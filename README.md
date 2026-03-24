@@ -19,7 +19,12 @@ Tinkercad provides a simulation environment where this circuit can be virtually 
 
 
 ## Circuit Diagram:
- 
+
+ <img width="1385" height="765" alt="image" src="https://github.com/user-attachments/assets/0d26d8f0-4e80-4752-9792-f3c340156994" />
+
+ <img width="1797" height="801" alt="image" src="https://github.com/user-attachments/assets/b9079823-f0db-461b-99d2-430dd50f6ef4" />
+
+
 ## Procedure: //Modify the procedure based on your circuit
 
 Step 1: Set Up the Tinkercad Environment
@@ -54,13 +59,39 @@ Step 7: Save Your Work
 
 ## Code:
 
+// C++ code //
+
+// variables int led = 2; int buzzer = 8; int pingPin = 13;
+
+void setup() { Serial.begin(9600); pinMode(led, OUTPUT); pinMode(buzzer, OUTPUT); }
+
+void loop() { long duration, cm; // variables to store the duration and distance
+
+// ultrasensor state pinMode(pingPin, OUTPUT); digitalWrite(pingPin, LOW); delayMicroseconds(2); digitalWrite(pingPin, HIGH); delayMicroseconds(5); digitalWrite(pingPin, LOW);
+
+// check input from ultrasensor pingPIN // store the input in duration variable pinMode(pingPin, INPUT); duration = pulseIn(pingPin, HIGH);
+
+// convert the time into cm cm = duration / 29 / 2;
+
+// print the result Serial.print(cm); Serial.print("cm"); Serial.println();
+
+// check if distance drops to 60 cm // buzz the piezzo every 1 sec // blink the light every 1 sec if(cm < 60){ digitalWrite(led, HIGH); tone(buzzer, 1000); delay(1000); // every 1 sec digitalWrite(led, LOW); noTone(buzzer); // ... no sound delay(1000);
+}
+
+}
 
 ## Output:
+
+
+
+
+https://github.com/user-attachments/assets/a46d34bf-3fe1-4494-bc66-943d3037df82
+
+
+
+
  
 
 
-## Result
-
-
-Result:
+## Result:
 The simulation successfully measured the distance between the ultrasonic sensor  HC-SR04 and the object. The real-time distance values were accurately displayed on the serial monitor in centimeters.
